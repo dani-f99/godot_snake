@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://7q5ifwy4iwr6"]
+
+[ext_resource type="Script" uid="uid://xmtgjxwswuj7" path="res://scripts/apple_2.gd" id="1_a3ung"]
+[ext_resource type="Texture2D" uid="uid://716ak107i2ag" path="res://assets/apple_tile.jpeg" id="2_l62pp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fws66"]
+size = Vector2(20, 19)
+
+[node name="apple2" type="Area2D"]
+script = ExtResource("1_a3ung")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("2_l62pp")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16.5)
+shape = SubResource("RectangleShape2D_fws66")
+
+[node name="respawn_timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,6 +1,1 @@
-[ ] Make global script with all functions and varibles
-[ ] make scenes independent and reusables
-[ ] define borders for snake teleportation
-[ ] add extending snake body
-[ ] add score
-[ ] reset on head-tail collision
+[ ] FIX BUG : sometimes the snake wont teleport when reching the edges.

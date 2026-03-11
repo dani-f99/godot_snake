@@ -8,7 +8,7 @@ func random_numner(array_length : int) -> int:
 ###
 # Custom function that select unccopuied cell
 func teleport_apple(occupied_cells : Array, 
-					grid_size : Vector2 = Vector2(24, 19)) -> Vector2:
+					grid_size = GlobalVar.grid_size - Vector2(1, 1))-> Vector2:
 	# getting the x,y arrays lengths
 	var x_grid = range(grid_size[0])
 	var y_grid = range(grid_size[1])
@@ -23,3 +23,9 @@ func teleport_apple(occupied_cells : Array,
 	var yi_rand = random_numner(y_grid.size()-1)
 	
 	return Vector2(x_grid[xi_rand], y_grid[yi_rand]) * GlobalVar.speed
+
+# reload scene function
+func restart_game():
+	GlobalVar.snake_array  = []
+	GlobalVar.score = 1
+	get_tree().reload_current_scene()

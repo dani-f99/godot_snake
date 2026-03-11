@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://yf5v7njx68t3"]
+
+[ext_resource type="Script" uid="uid://ckxho5bjxsuh3" path="res://scripts/tail.gd" id="1_o8wpl"]
+[ext_resource type="Texture2D" uid="uid://cfxj3lac4qvsj" path="res://assets/snake_tile.jpeg" id="2_dsmqp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wne8n"]
+size = Vector2(18, 18)
+
+[node name="tail" type="Area2D"]
+script = ExtResource("1_o8wpl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dsmqp")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_wne8n")

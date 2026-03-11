@@ -22,5 +22,5 @@ GlobalFunc="*res://scripts/global_func.gd"
 
 [display]
 
-window/size/viewport_width=800
-window/size/viewport_height=640
+window/size/viewport_width=672
+window/size/viewport_height=672

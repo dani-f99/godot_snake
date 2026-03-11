@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://pwp0sowd7t37"]
+[gd_scene load_steps=9 format=4 uid="uid://pwp0sowd7t37"]
 
 [ext_resource type="Texture2D" uid="uid://rqwlxf6vgwiw" path="res://assets/backround_tile.jpeg" id="1_4dvvg"]
 [ext_resource type="Script" uid="uid://brafd8medq72n" path="res://scripts/main.gd" id="1_4vge2"]
 [ext_resource type="PackedScene" uid="uid://b5wxtotml1f30" path="res://scenes/snake.tscn" id="2_4vge2"]
 [ext_resource type="PackedScene" uid="uid://7q5ifwy4iwr6" path="res://scenes/apple_2.tscn" id="3_rnjyy"]
-[ext_resource type="Script" uid="uid://c571mshknj4vo" path="res://scripts/label.gd" id="5_04qyp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rnjyy"]
 texture = ExtResource("1_4dvvg")
@@ -14,6 +13,12 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_4vge2"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_rnjyy")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnjyy"]
+size = Vector2(24, 672)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vge2"]
+size = Vector2(672, 24)
 
 [node name="snake_game" type="Node2D"]
 script = ExtResource("1_4vge2")
@@ -26,14 +31,37 @@ tile_set = SubResource("TileSet_4vge2")
 
 [node name="apple2" parent="." instance=ExtResource("3_rnjyy")]
 
-[node name="Label" type="Label" parent="."]
-offset_right = 128.0
-offset_bottom = 32.0
-theme_override_colors/font_color = Color(0.98984355, 5.4869056e-06, 9.62615e-07, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-horizontal_alignment = 1
-script = ExtResource("5_04qyp")
+[node name="borders" type="Node" parent="."]
+
+[node name="border_right" type="Area2D" parent="borders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="borders/border_right"]
+position = Vector2(-24, 336)
+shape = SubResource("RectangleShape2D_rnjyy")
+
+[node name="border_left" type="Area2D" parent="borders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="borders/border_left"]
+position = Vector2(696, 336)
+shape = SubResource("RectangleShape2D_rnjyy")
+
+[node name="border_top" type="Area2D" parent="borders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="borders/border_top"]
+position = Vector2(336, -24)
+shape = SubResource("RectangleShape2D_4vge2")
+
+[node name="border_bottom" type="Area2D" parent="borders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="borders/border_bottom"]
+position = Vector2(336, 696)
+shape = SubResource("RectangleShape2D_4vge2")
 
 [connection signal="area_entered" from="apple2" to="." method="_on_apple_2_area_entered"]
 [connection signal="area_entered" from="apple2" to="snake" method="_on_apple_2_area_entered"]
+[connection signal="area_entered" from="borders/border_right" to="snake" method="_on_border_right_area_entered"]
+[connection signal="area_entered" from="borders/border_left" to="snake" method="_on_border_left_area_entered"]
+[connection signal="area_entered" from="borders/border_top" to="snake" method="_on_border_top_area_entered"]
+[connection signal="area_entered" from="borders/border_top" to="snake" method="_on_border_left_area_entered"]
+[connection signal="area_entered" from="borders/border_bottom" to="snake" method="_on_border_bottom_area_entered"]
+[connection signal="area_entered" from="borders/border_bottom" to="snake" method="_on_border_left_area_entered"]

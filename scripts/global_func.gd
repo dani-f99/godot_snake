@@ -29,3 +29,15 @@ func restart_game():
 	GlobalVar.snake_array  = []
 	GlobalVar.score = 1
 	get_tree().reload_current_scene()
+	
+func move_snake():
+	# right, left, up, down
+	# Input change direction only
+	if (Input.is_action_just_pressed("ui_right")):
+		return Vector2(1.0, 0.0)
+	elif Input.is_action_just_pressed("ui_left"):
+		return Vector2(-1.0, 0.0)
+	elif Input.is_action_just_pressed("ui_up"):
+		return Vector2(0.0, -1.0)
+	elif Input.is_action_just_pressed("ui_down"):
+		return Vector2(0.0, 1.0)

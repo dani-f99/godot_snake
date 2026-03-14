@@ -15,4 +15,4 @@ func grow_snake():
 	add_child(tail) # Note: add it to the correct parent node (e.g., a "SnakeParts" node)
 
 func _on_apple_2_area_entered(_area: Area2D) -> void:
-	grow_snake()
+	call_deferred("grow_snake")
